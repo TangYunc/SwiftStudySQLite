@@ -44,6 +44,28 @@ class SQLiteManager {
 // MARK: - 微博数据操作
 extension SQLiteManager {
     
+    /// 从数据库加载 微博数据数组
+    ///
+    /// - Parameters:
+    ///   - userId: 当前登录的用户账号
+    ///   - since_id: 返回ID比since_id大的微博
+    ///   - max_id: 返回ID比max_id小的微博
+    /// - Returns: 微博的字典的数组，将数据库中 status 字段对应二进制数据反序列化，生成字典
+    func loadStatus(userId: String, since_id: Int64 = 0, max_id: Int64 = 0) -> [[String: Any]] {
+        //1.准备SQL
+        var sql = "SELECT statusId, userId, status FROM T_Status \n"
+        sql += "WHERE userId = \(userId) \n"
+        //上拉 / 下拉,都是针对同一个id 进行判断
+        if since_id > 0 {
+            sql += "AND statusId > \(since_id) \n"
+        } else if max_id < 0 {
+            sql += "AND statusId < \(max_id) \n"
+        }
+        sql += "ORDER BY statusId DESC LIMIT 20;"
+        //拼接SQL结束后，一定要测试SQL的正确性
+        print(sql)
+        return []
+    }
     /**
         思考：从网络加载结束后，返回的是微博的‘字典数组’，每一个字典对应一个完整的微博记录，         - 完整的微博记录中，包含微博的代号
             - 微博记录中，没有当前的用户账号

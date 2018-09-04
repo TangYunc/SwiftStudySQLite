@@ -35,8 +35,15 @@ class ViewController: UIViewController {
                      ["idstr": "119", "text": "微博-119"],
                      ["idstr": "120", "text": "微博-120"]]
         SQLiteManager.share.updateStatus(userId: "1", array: array)
-        
+        // ---- 测试查询 ----
         let result = SQLiteManager.share.execRecordSet(sql: "SELECT statusId, userId, status FROM T_Status;")
+        // ---- 测试加载微博数据 ----
+        //1> 进入系统第一次刷新
+//        _ = SQLiteManager.share.loadStatus(userId: "1", since_id: 0, max_id: 0)
+        //2> 测试下拉刷新
+//        _ = SQLiteManager.share.loadStatus(userId: "1", since_id: 120, max_id: 0)
+//       //3> 测试上拉刷新
+        _ = SQLiteManager.share.loadStatus(userId: "1", since_id: 0, max_id: 110)
         print(result)
         print(SQLiteManager.share)
         
