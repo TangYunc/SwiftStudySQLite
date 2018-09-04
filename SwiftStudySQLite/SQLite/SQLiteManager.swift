@@ -39,7 +39,8 @@ class SQLiteManager {
         creatTable()
     }
 }
-
+//"idstr": "(.*?)", "text": "微博-.*?"
+//"idstr": "$1", "text": "微博-$1"
 // MARK: - 微博数据操作
 extension SQLiteManager {
     
@@ -57,6 +58,22 @@ extension SQLiteManager {
         let sql = "INSERT OR REPLACE INTO T_Status (statusId, userId, status) VALUES (?, ?, ?)"
         
         // 2. 执行SQL
+        queue.inTransaction { (db, rollback) in
+            //遍历数组，逐条插入微博数据
+            for dict in array {
+                //从字典中获取微博代号/将字典序列化
+                guard let statusId = dict["idstr"] as? String, let jsonData = try? JSONSerialization.data(withJSONObject: dict, options: []) else {
+                    continue
+                }
+                //执行SQL
+                if db.executeUpdate(sql, withArgumentsIn: [statusId, userId, jsonData]) == false {
+                    //FIXME:需要回调
+                    break
+                }
+                
+                
+            }
+        }
     }
 }
 
