@@ -14,6 +14,7 @@
 		DD473AB5213E1C5B008B7EE2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD473AB4213E1C5B008B7EE2 /* Assets.xcassets */; };
 		DD473AB8213E1C5B008B7EE2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD473AB6213E1C5B008B7EE2 /* LaunchScreen.storyboard */; };
 		DD473AC1213E1E5E008B7EE2 /* SQLiteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD473AC0213E1E5E008B7EE2 /* SQLiteManager.swift */; };
+		DD473AC3213E5AB0008B7EE2 /* status.sql in Resources */ = {isa = PBXBuildFile; fileRef = DD473AC2213E5AB0008B7EE2 /* status.sql */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		DD473AB7213E1C5B008B7EE2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DD473AB9213E1C5B008B7EE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DD473AC0213E1E5E008B7EE2 /* SQLiteManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteManager.swift; sourceTree = "<group>"; };
+		DD473AC2213E5AB0008B7EE2 /* status.sql */ = {isa = PBXFileReference; lastKnownFileType = text; path = status.sql; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				DD473AC0213E1E5E008B7EE2 /* SQLiteManager.swift */,
+				DD473AC2213E5AB0008B7EE2 /* status.sql */,
 			);
 			path = SQLite;
 			sourceTree = "<group>";
@@ -159,6 +162,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD473AC3213E5AB0008B7EE2 /* status.sql in Resources */,
 				DD473AB8213E1C5B008B7EE2 /* LaunchScreen.storyboard in Resources */,
 				DD473AB5213E1C5B008B7EE2 /* Assets.xcassets in Resources */,
 				DD473AB3213E1C51008B7EE2 /* Main.storyboard in Resources */,
