@@ -35,6 +35,9 @@ class ViewController: UIViewController {
                      ["idstr": "119", "text": "微博-119"],
                      ["idstr": "120", "text": "微博-120"]]
         SQLiteManager.share.updateStatus(userId: "1", array: array)
+        
+        let result = SQLiteManager.share.execRecordSet(sql: "SELECT statusId, userId, status FROM T_Status;")
+        print(result)
         print(SQLiteManager.share)
         
     }

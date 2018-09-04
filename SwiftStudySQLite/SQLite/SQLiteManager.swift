@@ -82,6 +82,38 @@ extension SQLiteManager {
     }
 }
 
+extension SQLiteManager {
+    
+    func execRecordSet(sql: String) -> [[String: Any]] {
+        
+        var result = [[String: Any]]()
+        
+        //执行SQL - 查询数据，不会修改数据，所以不需要开启事务
+        //事物的目的，是为了保证数据的有效性，一旦失败，回滚到初始状态
+        queue.inDatabase { (db) in
+           guard let rs = db.executeQuery(sql, withArgumentsIn: []) else {
+                return
+            }
+            while rs.next() {
+                //1> 列数
+                let colCount = rs.columnCount
+                //2> 遍历所有列
+                for col in 0..<colCount {
+                    //3> 列名 -> Key / 值 -> Value
+                    guard let name = rs.columnName(for: col), let value = rs.object(forColumnIndex: col) else {
+                        continue
+                    }
+                    print("\(name) - \(value)")
+                    //4> 追加结果
+                    result.append([name: value])
+                }
+            }
+        }
+        return result
+    }
+}
+
+
 // MARK: - 创建数据表以及其他私有方法
 private extension SQLiteManager {
     //创建数据表
