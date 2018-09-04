@@ -67,11 +67,16 @@ extension SQLiteManager {
                 }
                 //执行SQL
                 if db.executeUpdate(sql, withArgumentsIn: [statusId, userId, jsonData]) == false {
-                    //FIXME:需要回调
+                    //需要回滚 *rollback = YES
+                    //Xcode的自动语法转换，不会处理此处
+                    //Swift 1.x & 2.x => rollback.memory = true
+                    //Swift 3.0的写法
+                    rollback.pointee = true
                     break
                 }
-                
-                
+                //默拟会滚
+//                rollback.pointee = true
+//                break
             }
         }
     }

@@ -14,7 +14,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        let array: [[String: Any]] = [["idstr": "101", "text": "微博-101"],
+        let array: [[String: Any]] = [["idstr": "101", "text": "微博-101啊啊啊啊啊啊啊啊"],
                      ["idstr": "102", "text": "微博-102"],
                      ["idstr": "103", "text": "微博-103"],
                      ["idstr": "104", "text": "微博-104"],
