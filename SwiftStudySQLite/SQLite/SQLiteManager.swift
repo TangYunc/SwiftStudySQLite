@@ -15,6 +15,8 @@ import FMDB
  2.FMDB - 队列
  3.创建数据库
  4.增删改查
+ 
+ 提示：数据库开发，程序代码几乎都是一直的，区别在SQL
  */
 
 
@@ -35,6 +37,26 @@ class SQLiteManager {
         queue = FMDatabaseQueue(path: path)
         //打开数据库
         creatTable()
+    }
+}
+
+// MARK: - 微博数据操作
+extension SQLiteManager {
+    
+    /**
+        思考：从网络加载结束后，返回的是微博的‘字典数组’，每一个字典对应一个完整的微博记录，         - 完整的微博记录中，包含微博的代号
+            - 微博记录中，没有当前的用户账号
+     */
+    /// 新增或者修改微博数据，微博数据再刷新的时候，可能会出现重叠
+    ///
+    /// - Parameters:
+    ///   - userId: 当前登录用户的Id
+    ///   - array: 从网络获取的‘字典数组’
+    func updateStatus(userId: String, array: [[String: Any]]) {
+        // 1. 准备SQL
+        let sql = "INSERT OR REPLACE INTO T_Status (statusId, userId, status) VALUES (?, ?, ?)"
+        
+        // 2. 执行SQL
     }
 }
 
