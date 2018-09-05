@@ -64,7 +64,19 @@ extension SQLiteManager {
         sql += "ORDER BY statusId DESC LIMIT 20;"
         //拼接SQL结束后，一定要测试SQL的正确性
         print(sql)
-        return []
+        //2. 执行SQL
+        let array = execRecordSet(sql: sql)
+        //3. 遍历数组，将数组中的status 反序列化 -> 字典的数组
+        var result = [[String: Any]]()
+        for dict in array {
+            //反序列化
+            guard let jsonData = dict["status"] as? Data, let json = try? JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any] else {
+                continue
+            }
+            //追加到数组中去
+            result.append(json ?? [:])
+        }
+        return result
     }
     /**
         思考：从网络加载结束后，返回的是微博的‘字典数组’，每一个字典对应一个完整的微博记录，         - 完整的微博记录中，包含微博的代号

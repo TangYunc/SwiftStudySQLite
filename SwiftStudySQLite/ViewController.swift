@@ -43,7 +43,8 @@ class ViewController: UIViewController {
         //2> 测试下拉刷新
 //        _ = SQLiteManager.share.loadStatus(userId: "1", since_id: 120, max_id: 0)
 //       //3> 测试上拉刷新
-        _ = SQLiteManager.share.loadStatus(userId: "1", since_id: 0, max_id: 110)
+        let rs1 = SQLiteManager.share.loadStatus(userId: "1", since_id: 0, max_id: 110)
+        print(rs1)
         print(result)
         print(SQLiteManager.share)
         
